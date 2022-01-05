@@ -179,6 +179,61 @@
             "description": "Adds two integers."
           },
           "response": []
+        },
+        {
+          "name": "Divide numbers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Divide numbers test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['DivideResponse']['DivideResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"5\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Divide xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Divide>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://www.dneonline.com/calculator.asmx",
+              "protocol": "http",
+              "host": ["www", "dneonline", "com"],
+              "path": ["calculator.asmx"]
+            },
+            "description": "Divides two integers."
+          },
+          "response": []
         }
       ]
     }
