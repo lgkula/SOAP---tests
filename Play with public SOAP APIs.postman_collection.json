@@ -1,503 +1,504 @@
 {
-	"info": {
-		"_postman_id": "f7c7e272-569a-4326-9161-24349d26fc5d",
-		"name": "Play with public SOAP APIs",
-		"description": "[https://www.dataaccess.com/webservicesserver/NumberConversion.wso?op=NumberToDollars](https://www.dataaccess.com/webservicesserver/NumberConversion.wso?op=NumberToDollars)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19802329"
-	},
-	"item": [
-		{
-			"name": "Number convertion",
-			"item": [
-				{
-					"name": "Number to dollars",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Number to dollars test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['m:NumberToDollarsResponse']['m:NumberToDollarsResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"five hundred dollars\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\r\n      <dNum>500</dNum>\r\n    </NumberToDollars>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
-							"protocol": "https",
-							"host": [
-								"www",
-								"dataaccess",
-								"com"
-							],
-							"path": [
-								"webservicesserver",
-								"NumberConversion.wso"
-							]
-						},
-						"description": "Returns the non-zero dollar amount of the passed number."
-					},
-					"response": []
-				},
-				{
-					"name": "Number to words",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Number to words test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['m:NumberToWordsResponse']['m:NumberToWordsResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"five million\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\r\n      <ubiNum>5000000</ubiNum>\r\n    </NumberToWords>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
-							"protocol": "https",
-							"host": [
-								"www",
-								"dataaccess",
-								"com"
-							],
-							"path": [
-								"webservicesserver",
-								"NumberConversion.wso"
-							]
-						},
-						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Calculator",
-			"item": [
-				{
-					"name": "Add numbers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Add numbers test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['AddResponse']['AddResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"10\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Add xmlns=\"http://tempuri.org/\">\r\n      <intA>5</intA>\r\n      <intB>5</intB>\r\n    </Add>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://www.dneonline.com/calculator.asmx",
-							"protocol": "http",
-							"host": [
-								"www",
-								"dneonline",
-								"com"
-							],
-							"path": [
-								"calculator.asmx"
-							]
-						},
-						"description": "Adds two integers."
-					},
-					"response": []
-				},
-				{
-					"name": "Divide numbers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Divide numbers test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['DivideResponse']['DivideResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"5\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Divide xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Divide>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://www.dneonline.com/calculator.asmx",
-							"protocol": "http",
-							"host": [
-								"www",
-								"dneonline",
-								"com"
-							],
-							"path": [
-								"calculator.asmx"
-							]
-						},
-						"description": "Divides two integers."
-					},
-					"response": []
-				},
-				{
-					"name": "Multiply numbers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Multiply numbers test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['MultiplyResponse']['MultiplyResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"20\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Multiply xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Multiply>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://www.dneonline.com/calculator.asmx",
-							"protocol": "http",
-							"host": [
-								"www",
-								"dneonline",
-								"com"
-							],
-							"path": [
-								"calculator.asmx"
-							]
-						},
-						"description": "Multipies two integers."
-					},
-					"response": []
-				},
-				{
-					"name": "Subtract numbers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Subtract numbers test\", function () {\r",
-									"    var jsonObject = xml2Json(responseBody); \r",
-									"    var result = jsonObject['soap:Envelope']['soap:Body']['SubtractResponse']['SubtractResult']; \r",
-									"    \r",
-									"    pm.expect(result).to.equal(\"8\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Subtract xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Subtract>\r\n  </soap:Body>\r\n</soap:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://www.dneonline.com/calculator.asmx",
-							"protocol": "http",
-							"host": [
-								"www",
-								"dneonline",
-								"com"
-							],
-							"path": [
-								"calculator.asmx"
-							]
-						},
-						"description": "Subtracts two integers."
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Continents",
-			"item": [
-				{
-					"name": "List of continents by name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status test\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"var jsonObject = xml2Json(responseBody); \r",
-									"var result = jsonObject['soap:Envelope']['soap:Body']['m:ListOfContinentsByNameResponse']['m:ListOfContinentsByNameResult']['m:tContinent']; \r",
-									"\r",
-									"pm.test(\"Countries amount test\", function () {\r",
-									"    pm.expect(result.length).to.equal(6);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Country name test\", function () {\r",
-									"    //sName test\r",
-									"    pm.expect(result[0]['m:sName']).to.equal('Africa');\r",
-									"    pm.expect(result[1]['m:sName']).to.equal('Antarctica');\r",
-									"    pm.expect(result[2]['m:sName']).to.equal('Asia');\r",
-									"    pm.expect(result[3]['m:sName']).to.equal('Europe');\r",
-									"    pm.expect(result[4]['m:sName']).to.equal('Ocenania');\r",
-									"    pm.expect(result[5]['m:sName']).to.equal('The Americas');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Country code - test\", function () {\r",
-									"    //sCode test\r",
-									"    pm.expect(result[0]['m:sCode']).to.equal('AF');\r",
-									"    pm.expect(result[1]['m:sCode']).to.equal('AN');\r",
-									"    pm.expect(result[2]['m:sCode']).to.equal('AS');\r",
-									"    pm.expect(result[3]['m:sCode']).to.equal('EU');\r",
-									"    pm.expect(result[4]['m:sCode']).to.equal('OC');\r",
-									"    pm.expect(result[5]['m:sCode']).to.equal('AM');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml; charset=utf-8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\r\n  <soap12:Body>\r\n    <ListOfContinentsByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\r\n    </ListOfContinentsByName>\r\n  </soap12:Body>\r\n</soap12:Envelope>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
-							"protocol": "http",
-							"host": [
-								"webservices",
-								"oorsprong",
-								"org"
-							],
-							"path": [
-								"websamples.countryinfo",
-								"CountryInfoService.wso"
-							]
-						},
-						"description": "List of continents by name"
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "HOST",
-			"value": "https://www.dataaccess.com",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "f7c7e272-569a-4326-9161-24349d26fc5d",
+    "name": "Play with public SOAP APIs",
+    "description": "[https://www.dataaccess.com/webservicesserver/NumberConversion.wso?op=NumberToDollars](https://www.dataaccess.com/webservicesserver/NumberConversion.wso?op=NumberToDollars)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19802329"
+  },
+  "item": [
+    {
+      "name": "Number convertion",
+      "item": [
+        {
+          "name": "Number to dollars",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Number to dollars test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['m:NumberToDollarsResponse']['m:NumberToDollarsResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"five hundred dollars\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\r\n      <dNum>500</dNum>\r\n    </NumberToDollars>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+              "protocol": "https",
+              "host": ["www", "dataaccess", "com"],
+              "path": ["webservicesserver", "NumberConversion.wso"]
+            },
+            "description": "Returns the non-zero dollar amount of the passed number."
+          },
+          "response": []
+        },
+        {
+          "name": "Number to words",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Number to words test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['m:NumberToWordsResponse']['m:NumberToWordsResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"five million\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\r\n      <ubiNum>5000000</ubiNum>\r\n    </NumberToWords>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+              "protocol": "https",
+              "host": ["www", "dataaccess", "com"],
+              "path": ["webservicesserver", "NumberConversion.wso"]
+            },
+            "description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Calculator",
+      "item": [
+        {
+          "name": "Add numbers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Add numbers test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['AddResponse']['AddResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"10\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Add xmlns=\"http://tempuri.org/\">\r\n      <intA>5</intA>\r\n      <intB>5</intB>\r\n    </Add>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://www.dneonline.com/calculator.asmx",
+              "protocol": "http",
+              "host": ["www", "dneonline", "com"],
+              "path": ["calculator.asmx"]
+            },
+            "description": "Adds two integers."
+          },
+          "response": []
+        },
+        {
+          "name": "Divide numbers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Divide numbers test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['DivideResponse']['DivideResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"5\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Divide xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Divide>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://www.dneonline.com/calculator.asmx",
+              "protocol": "http",
+              "host": ["www", "dneonline", "com"],
+              "path": ["calculator.asmx"]
+            },
+            "description": "Divides two integers."
+          },
+          "response": []
+        },
+        {
+          "name": "Multiply numbers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Multiply numbers test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['MultiplyResponse']['MultiplyResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"20\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Multiply xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Multiply>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://www.dneonline.com/calculator.asmx",
+              "protocol": "http",
+              "host": ["www", "dneonline", "com"],
+              "path": ["calculator.asmx"]
+            },
+            "description": "Multipies two integers."
+          },
+          "response": []
+        },
+        {
+          "name": "Subtract numbers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Subtract numbers test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['SubtractResponse']['SubtractResult']; \r",
+                  "    \r",
+                  "    pm.expect(result).to.equal(\"8\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Subtract xmlns=\"http://tempuri.org/\">\r\n      <intA>10</intA>\r\n      <intB>2</intB>\r\n    </Subtract>\r\n  </soap:Body>\r\n</soap:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://www.dneonline.com/calculator.asmx",
+              "protocol": "http",
+              "host": ["www", "dneonline", "com"],
+              "path": ["calculator.asmx"]
+            },
+            "description": "Subtracts two integers."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Continents and countries",
+      "item": [
+        {
+          "name": "List of continents by name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "var jsonObject = xml2Json(responseBody); \r",
+                  "var result = jsonObject['soap:Envelope']['soap:Body']['m:ListOfContinentsByNameResponse']['m:ListOfContinentsByNameResult']['m:tContinent']; \r",
+                  "\r",
+                  "pm.test(\"Continents amount test\", function () {\r",
+                  "    pm.expect(result.length).to.equal(6);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Continents name test\", function () {\r",
+                  "    //sName test\r",
+                  "    pm.expect(result[0]['m:sName']).to.equal('Africa');\r",
+                  "    pm.expect(result[1]['m:sName']).to.equal('Antarctica');\r",
+                  "    pm.expect(result[2]['m:sName']).to.equal('Asia');\r",
+                  "    pm.expect(result[3]['m:sName']).to.equal('Europe');\r",
+                  "    pm.expect(result[4]['m:sName']).to.equal('Ocenania');\r",
+                  "    pm.expect(result[5]['m:sName']).to.equal('The Americas');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Continents code - test\", function () {\r",
+                  "    //sCode test\r",
+                  "    pm.expect(result[0]['m:sCode']).to.equal('AF');\r",
+                  "    pm.expect(result[1]['m:sCode']).to.equal('AN');\r",
+                  "    pm.expect(result[2]['m:sCode']).to.equal('AS');\r",
+                  "    pm.expect(result[3]['m:sCode']).to.equal('EU');\r",
+                  "    pm.expect(result[4]['m:sCode']).to.equal('OC');\r",
+                  "    pm.expect(result[5]['m:sCode']).to.equal('AM');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\r\n  <soap12:Body>\r\n    <ListOfContinentsByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\r\n    </ListOfContinentsByName>\r\n  </soap12:Body>\r\n</soap12:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+              "protocol": "http",
+              "host": ["webservices", "oorsprong", "org"],
+              "path": ["websamples.countryinfo", "CountryInfoService.wso"]
+            },
+            "description": "List of continents by name"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Book ISBN numbers",
+      "item": [
+        {
+          "name": "Is valid ISBN13 number",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Is valid ISBN13 number test\", function () {\r",
+                  "    var jsonObject = xml2Json(responseBody); \r",
+                  "    var result = jsonObject['soap:Envelope']['soap:Body']['m:IsValidISBN13Response']['m:IsValidISBN13Result']; \r",
+                  "\r",
+                  "    pm.expect(result).to.equal('true');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml; charset=utf-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\r\n      <sISBN>978-1-4612-9090-2</sISBN>\r\n    </IsValidISBN13>\r\n  </soap:Body>\r\n</soap:Envelope>"
+            },
+            "url": {
+              "raw": "http://webservices.daehosting.com/services/isbnservice.wso",
+              "protocol": "http",
+              "host": ["webservices", "daehosting", "com"],
+              "path": ["services", "isbnservice.wso"]
+            },
+            "description": "Checks if the ISBN13 number is valid."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "HOST",
+      "value": "https://www.dataaccess.com",
+      "type": "string"
+    }
+  ]
 }
